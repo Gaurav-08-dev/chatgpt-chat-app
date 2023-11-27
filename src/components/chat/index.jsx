@@ -1,4 +1,6 @@
-import React from 'react'
+import React from 'react'; // eslint-disable-line
+import Header from "@/components/header"
+import StandardMessageForm from "@/components/customMessageForms/StandardMessageForm"
 import {
   useMultiChatLogic,
   MultiChatSocket,
@@ -21,6 +23,9 @@ const Chat = () => {
       <MultiChatWindow
         style={{ height: "100vh" }}
         renderChatHeader={(chat) => <Header chat={chat} />}
+        renderMessageForm={()=>{
+          return (<StandardMessageForm props={props} activeChat={chatProps.chat} />)
+        }}
         {...chatProps}
       />
     </div>
