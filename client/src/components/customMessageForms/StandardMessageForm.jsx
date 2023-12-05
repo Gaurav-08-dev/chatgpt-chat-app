@@ -6,8 +6,6 @@ import Dropzone from 'react-dropzone';
 
 const StandardMessageForm = ({ props, activeChat }) => {
 
-
-
     const [message, setMessage] = useState("");
     const [attachment, setAttachment] = useState("");
     const [preview, setPreview] = useState("");
