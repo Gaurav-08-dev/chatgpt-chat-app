@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
+import { useState } from 'react';
+import MessageFormUI from './MessageFormUI'
+import { usePostAiCodeMutation } from '@/state/api';
 
-import { useState } from 'react'
-import MessageFormUI from './MessageFormUI';
-
-const StandardMessageForm = ({ props, activeChat }) => {
+const AiCode = ({props,activeChat}) => {
 
     const [message, setMessage] = useState("");
     const [attachment, setAttachment] = useState("");
+    const [trigger] = usePostAiCodeMutation();
 
     const handleChange = (e) => {
         setMessage(e.target.value);
@@ -30,19 +31,19 @@ const StandardMessageForm = ({ props, activeChat }) => {
         }
 
         props.onSubmit(form);
+        trigger(form);
         setMessage("");
-        setAttachment("")
+        setAttachment("");
 
     }
-
     return (
-       <MessageFormUI
-        setAttachment={setAttachment}
-        message={message}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-       />
+        <MessageFormUI
+            setAttachment={setAttachment}
+            message={message}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+        />
     )
 }
 
-export default StandardMessageForm
+export default AiCode

@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
 import OpenAI from "openai";
-import openAiRoutes from "./routes/openai.js"
+import openAiRoutes from "./routes/openai.js";
 
 
 // Configurations
@@ -32,12 +32,10 @@ export const openai = new OpenAI({
 
 
 // ROUTES
-
 app.use("/openai", openAiRoutes)
 
 
 // Server
-
 const PORT = process.env.PORT || 9000;
 app.listen(PORT, ()=>{
     console.log(`Example app litening on Port http://localhost:${PORT}`)

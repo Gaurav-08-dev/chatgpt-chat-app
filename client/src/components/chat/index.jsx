@@ -1,6 +1,10 @@
 import React from 'react'; // eslint-disable-line
 import Header from "@/components/header"
 import StandardMessageForm from "@/components/customMessageForms/StandardMessageForm"
+import Ai from "@/components/customMessageForms/Ai";
+import AiCode from "@/components/customMessageForms/AiCode";
+
+
 import {
   useMultiChatLogic,
   MultiChatSocket,
@@ -21,12 +25,27 @@ const Chat = () => {
         {...chatProps}
       />
       <MultiChatWindow
+      {...chatProps}
         style={{ height: "100vh" }}
         renderChatHeader={(chat) => <Header chat={chat} />}
         renderMessageForm={(props)=>{
-          return (<StandardMessageForm 
+
+          if(chatProps.chat?.title.startsWith("AiChat_")){
+            return <Ai props={props} activeChat={chatProps.chat}/>
+          }
+
+          if(chatProps.chat?.title.startsWith("AiCode_")){
+            return <AiCode props={props} activeChat={chatProps.chat}/>
+          }
+          
+          return (
+          
+          <StandardMessageForm 
           props={props} 
-          activeChat={chatProps.chat} />)
+          activeChat={chatProps.chat} />
+
+
+          )
         }}
         {...chatProps}
       />
