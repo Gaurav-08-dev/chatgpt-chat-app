@@ -1,4 +1,4 @@
-import React from 'react'
+
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.scss'
@@ -8,6 +8,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { api } from './state/api.js';
 
+console.log(api)
 export const store = configureStore({
     reducer: { [api.reducerPath]: api.reducer },
     middleware: (getDefault) => getDefault().concat(api.middleware)

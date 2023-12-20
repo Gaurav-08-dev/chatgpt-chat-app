@@ -79,4 +79,31 @@ router.post("/code", async (req, res) => {
 
 })
 
+
+router.post("/assist", async (req, res) => {
+
+    try {
+
+        const { text } = req.body;
+
+        const response = await openai.chat.completions.create({
+            model: "text-davinci-003",
+            prompt: `Finish my thought: ${text}`,
+            tempertature: 0.5,
+            max_tokens: 1024,
+            top_p: 1,
+            frequency_penalty: 0.5,
+            presence_penalty: 0
+        })
+
+        
+        res.status(200).json({ text: response.data.choices[0].text })
+
+    } catch (error) {
+        console.log("error", error)
+        res.status(500).json({ error: error.message })
+    }
+
+})
+
 export default router;

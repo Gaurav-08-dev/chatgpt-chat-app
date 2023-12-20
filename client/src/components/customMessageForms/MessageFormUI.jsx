@@ -9,7 +9,9 @@ const MessageFormUI = ({
     setAttachment, 
     message,
     handleChange,
-    handleSubmit
+    handleSubmit,
+    appendText,
+    handleKeyDown
 }) => {
 
     const [preview,setPreview]=useState("");
@@ -40,7 +42,18 @@ const MessageFormUI = ({
                         value={message}
                         onChange={handleChange}
                         placeholder='Send a message...'
+                        onKeyDown={handleKeyDown}
                     />
+                    {
+                        appendText && (
+                            <input
+                                className='message-form-assist'
+                                type="text"
+                                disabled="disabled"
+                                value={`${message} ${appendText}`}
+                            />
+                        )
+                    }
                 </div>
                 <div className='message-form-icons'>
                     <Dropzone acceptedFiles=".jpg,.jpeg,.png"
